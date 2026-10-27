@@ -1,0 +1,554 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 7129
+>>
+stream
+0.5670000000000001 w
+0 G
+0.06 0.09 0.16 rg
+42.5196850393700814 799.3703149606299121 510.2362204724410049 -70.8661417322834666 re
+f
+BT
+/F2 14 Tf
+16.0999999999999979 TL
+1. g
+62.3622047244094517 768.1892125984252289 Td
+(QR CODE SAFETY CHECKER - SECURITY AUDIT REPORT) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.58 0.639 0.722 rg
+62.3622047244094517 751.1813385826771992 Td
+(Local Threat Heuristics Diagnostic Sheet) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.059 0.09 0.165 rg
+42.5196850393700814 694.4884251968503577 Td
+(SCAN METADATA) Tj
+ET
+0.89 0.91 0.94 RG
+42.5196850393700814 688.819133858267719 m
+552.7559055118110791 688.819133858267719 l
+S
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.392 0.455 0.545 rg
+42.5196850393700814 668.9766141732283131 Td
+(Payload Target:) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.392 0.455 0.545 rg
+42.5196850393700814 620.7876377952754865 Td
+(Scan Date:) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.392 0.455 0.545 rg
+311.8110236220472871 620.7876377952754865 Td
+(Payload Format:) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.059 0.09 0.165 rg
+42.5196850393700814 654.8033858267716596 Td
+(http://192.168.1.105/secure-bank-login/update-password.php) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.059 0.09 0.165 rg
+42.5196850393700814 606.614409448818833 Td
+(10/26/2026, 4:46:56 PM) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.059 0.09 0.165 rg
+311.8110236220472871 606.614409448818833 Td
+(HTTP/HTTPS Link) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.059 0.09 0.165 rg
+42.5196850393700814 569.7640157480313974 Td
+(SECURITY ASSESSMENT VERDICT) Tj
+ET
+42.5196850393700814 564.0947244094487587 m
+552.7559055118110791 564.0947244094487587 l
+S
+1. 0.89 0.89 rg
+42.5196850393700814 552.7561417322833677 510.2362204724410049 -51.0236220472441033 re
+f
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.6 0.106 0.106 rg
+56.6929133858267775 532.9136220472440755 Td
+(VERDICT: DANGER  |  Threat Risk Index: 100/100) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.6 0.106 0.106 rg
+56.6929133858267775 515.9057480314959321 Td
+(Warning: This link displays strong signatures of a phishing or malicious portal!) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.059 0.09 0.165 rg
+42.5196850393700814 470.5514173228345953 Td
+(DETAILED AUDIT CHECKLIST) Tj
+ET
+42.5196850393700814 464.8821259842518998 m
+552.7559055118110791 464.8821259842518998 l
+S
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.937 0.267 0.267 rg
+42.5196850393700814 445.0396062992125508 Td
+([ALERT] ) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.059 0.09 0.165 rg
+107.7165354330708738 445.0396062992125508 Td
+(Host Audit: Raw IP Address Detected) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+107.7165354330708738 432.2837007874015285 Td
+(Using numeric IP addresses instead of registered domain names is a strong indicator of temporary phishing setups.) Tj
+ET
+0.95 0.96 0.98 RG
+42.5196850393700814 422.3624409448818255 m
+552.7559055118110791 422.3624409448818255 l
+S
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.937 0.267 0.267 rg
+42.5196850393700814 408.1892125984251152 Td
+([ALERT] ) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.059 0.09 0.165 rg
+107.7165354330708738 408.1892125984251152 Td
+(Keywords Scan: Suspicious Terms Detected) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+107.7165354330708738 395.4333070866140929 Td
+(Contains credential triggers: login, secure, bank. Scammers inject brand names in subdomains to spoof identity.) Tj
+ET
+0.95 0.96 0.98 RG
+42.5196850393700814 385.51204724409439 m
+552.7559055118110791 385.51204724409439 l
+S
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.961 0.62 0.043 rg
+42.5196850393700814 371.3388188976377364 Td
+([WARN]  ) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.059 0.09 0.165 rg
+107.7165354330708738 371.3388188976377364 Td
+(Connection Encryption: Insecure \(HTTP\)) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+107.7165354330708738 358.5829133858267141 Td
+(Traffic is sent in plain text and can be intercepted. Legitimate log-in portals almost always use HTTPS.) Tj
+ET
+0.95 0.96 0.98 RG
+42.5196850393700814 348.6616535433070112 m
+552.7559055118110791 348.6616535433070112 l
+S
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.063 0.725 0.506 rg
+42.5196850393700814 334.4884251968503008 Td
+([PASSED]) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.059 0.09 0.165 rg
+107.7165354330708738 334.4884251968503008 Td
+(Redirect Check: Direct Domain Link) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+107.7165354330708738 321.7325196850392786 Td
+(No link shortening wrappers were detected. This link goes directly to the listed host.) Tj
+ET
+0.95 0.96 0.98 RG
+42.5196850393700814 311.8112598425196325 m
+552.7559055118110791 311.8112598425196325 l
+S
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.063 0.725 0.506 rg
+42.5196850393700814 297.6380314960629221 Td
+([PASSED]) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.059 0.09 0.165 rg
+107.7165354330708738 297.6380314960629221 Td
+(TLD Security: Standard Extension \(.105\)) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+107.7165354330708738 284.882125984251843 Td
+(The extension used is a standard global TLD with active domain-authority controls.) Tj
+ET
+0.95 0.96 0.98 RG
+42.5196850393700814 274.9608661417321969 m
+552.7559055118110791 274.9608661417321969 l
+S
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.063 0.725 0.506 rg
+42.5196850393700814 260.7876377952754865 Td
+([PASSED]) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.059 0.09 0.165 rg
+107.7165354330708738 260.7876377952754865 Td
+(Subdomain Audit: Safe Domain Hierarchy) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+107.7165354330708738 248.0317322834645211 Td
+(Structure is simple, using standard domain directories without excessive sub-level prefixes.) Tj
+ET
+0.95 0.96 0.98 RG
+42.5196850393700814 238.1104724409447897 m
+552.7559055118110791 238.1104724409447897 l
+S
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.063 0.725 0.506 rg
+42.5196850393700814 223.9372440944881646 Td
+([PASSED]) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.059 0.09 0.165 rg
+107.7165354330708738 223.9372440944881646 Td
+(Port Check: Standard Connection Port) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+107.7165354330708738 211.1813385826770855 Td
+(Routes cleanly through default internet ports \(HTTP 80 / HTTPS 443\).) Tj
+ET
+0.95 0.96 0.98 RG
+42.5196850393700814 201.2600787401573825 m
+552.7559055118110791 201.2600787401573825 l
+S
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.063 0.725 0.506 rg
+42.5196850393700814 187.086850393700729 Td
+([PASSED]) Tj
+ET
+BT
+/F2 8.5 Tf
+9.7749999999999986 TL
+0.059 0.09 0.165 rg
+107.7165354330708738 187.086850393700729 Td
+(Identity Audit: Standard Character Set) Tj
+ET
+BT
+/F1 7.5 Tf
+8.625 TL
+0.392 0.455 0.545 rg
+107.7165354330708738 174.3309448818896499 Td
+(Domain contains standard ASCII characters. No Unicode character mixing detected.) Tj
+ET
+0.95 0.96 0.98 RG
+42.5196850393700814 164.4096850393699754 m
+552.7559055118110791 164.4096850393699754 l
+S
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.58 0.639 0.722 rg
+42.5196850393700814 34.0159842519684616 Td
+(This report is generated locally inside the browser client. No URL data is submitted to cloud databases.) Tj
+ET
+BT
+/F1 7 Tf
+8.0499999999999989 TL
+0.58 0.639 0.722 rg
+430.866141732283495 34.0159842519684616 Td
+(QR Code Safety Checker Core v1.0.0) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R ]
+/Count 1
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+6 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+7 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+8 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+9 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+10 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+11 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+12 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+18 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 5 0 R
+/F2 6 0 R
+/F3 7 0 R
+/F4 8 0 R
+/F5 9 0 R
+/F6 10 0 R
+/F7 11 0 R
+/F8 12 0 R
+/F9 13 0 R
+/F10 14 0 R
+/F11 15 0 R
+/F12 16 0 R
+/F13 17 0 R
+/F14 18 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+19 0 obj
+<<
+/Producer (jsPDF 2.5.1)
+/CreationDate (D:20261026164656+05'30')
+>>
+endobj
+20 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 21
+0000000000 65535 f 
+0000007333 00000 n 
+0000009150 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000007390 00000 n 
+0000007515 00000 n 
+0000007645 00000 n 
+0000007778 00000 n 
+0000007915 00000 n 
+0000008038 00000 n 
+0000008167 00000 n 
+0000008299 00000 n 
+0000008435 00000 n 
+0000008563 00000 n 
+0000008690 00000 n 
+0000008819 00000 n 
+0000008952 00000 n 
+0000009054 00000 n 
+0000009398 00000 n 
+0000009484 00000 n 
+trailer
+<<
+/Size 21
+/Root 20 0 R
+/Info 19 0 R
+/ID [ <96D8EB8199FF7A200C1F94EF248973EA> <96D8EB8199FF7A200C1F94EF248973EA> ]
+>>
+startxref
+9588
+%%EOF

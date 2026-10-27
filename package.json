@@ -1,0 +1,11 @@
+{
+  "name": "qr-code-safety-checker",
+  "version": "1.0.0",
+  "description": "QR Code safety checker, URL redirect auditor, and secure designer QR generator.",
+  "scripts": {
+    "dev": "npx http-server . -p 8080 -o"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

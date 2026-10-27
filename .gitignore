@@ -1,0 +1,16 @@
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Temporary & Log files
+*.log
+dump.html
+console.log
+
+# Node & IDE
+node_modules/
+.vscode/
+.idea/

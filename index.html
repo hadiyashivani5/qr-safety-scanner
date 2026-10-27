@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A premium, secure QR code reader that decodes links, analyzes threat safety, and generates designer styled QR codes securely.">
+  <title>QR Code Safety Checker</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="stylesheet" href="style.css?v=20261027_03">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- html5-qrcode Library CDN -->
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <!-- jsQR Library CDN for robust in-memory file scanning -->
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <!-- qr-code-styling Library CDN for premium customizable QRs -->
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.min.js" type="text/javascript"></script>
+  <!-- jsPDF Library CDN for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- CryptoJS Library CDN for client-side encryption/decryption -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand-wrapper">
+        <i data-lucide="shield-check" class="brand-icon" stroke-width="2" size="36"></i>
+        <h1 class="app-title">QR Code Safety Checker</h1>
+      </div>
+      <p class="app-subtitle">Secure QR code decoder and creator. Scan live feeds, audit redirection loops, or design beautiful secure QR codes locally.</p>
+      
+      <!-- Trust & Convenience Badges -->
+      <div class="trust-badges-row">
+        <span class="trust-badge">
+          <i data-lucide="user-x" size="14"></i>
+          No Login Required
+        </span>
+        <span class="trust-badge">
+          <i data-lucide="shield-check" size="14"></i>
+          100% Client-Side Privacy
+        </span>
+        <span class="trust-badge">
+          <i data-lucide="zap" size="14"></i>
+          Instant Scan (No Install)
+        </span>
+        <span class="trust-badge">
+          <i data-lucide="sparkles" size="14"></i>
+          Ad-Free & 100% Free
+        </span>
+      </div>
+      
+      <!-- Top Navigation Tabs -->
+      <nav class="app-nav">
+        <button class="nav-tab active" id="nav-btn-scan" data-nav="scan-section">
+          <i data-lucide="shield-check" size="18"></i>
+          Scan & Verify
+        </button>
+        <button class="nav-tab" id="nav-btn-generate" data-nav="generate-section">
+          <i data-lucide="qr-code" size="18"></i>
+          Secure Generator
+        </button>
+      </nav>
+    </header>
+
+    <!-- Scan & Verify Section -->
+    <div class="nav-section active" id="scan-section">
+      <main class="main-grid">
+        
+        <!-- Left Column: Input and Scanner Controls -->
+        <section class="glass-card scanner-card">
+          <!-- Tab Navigation -->
+          <div class="scan-modes-tabs">
+            <button class="tab-btn active" id="tab-camera" data-tab="view-camera">
+              <i data-lucide="camera" size="18"></i>
+              Live Camera
+            </button>
+            <button class="tab-btn" id="tab-upload" data-tab="view-upload">
+              <i data-lucide="upload" size="18"></i>
+              Upload Image
+            </button>
+            <button class="tab-btn" id="tab-manual" data-tab="view-manual">
+              <i data-lucide="link" size="18"></i>
+              Check URL
+            </button>
+          </div>
+
+          <!-- Tab Panel: Live Camera -->
+          <div class="scan-content-view active" id="view-camera">
+            <div class="camera-container" id="camera-container">
+              <!-- Realtime Decoder Camera Viewport -->
+              <div id="reader"></div>
+              
+              <!-- Scan targeting frame & laser line -->
+              <div class="scanner-overlay" id="scanner-overlay">
+                <div class="scanner-box">
+                  <div class="scanner-corner"></div>
+                  <div class="laser-line"></div>
+                </div>
+              </div>
+
+              <!-- Placeholder overlay if camera not running -->
+              <div class="camera-placeholder" id="camera-placeholder">
+                <div class="camera-placeholder-icon">
+                  <i data-lucide="scan" size="30" stroke-width="1.75"></i>
+                </div>
+                <h3>Ready to Scan</h3>
+                <p>Point your camera at any QR code to audit safety in real-time.</p>
+                <button class="btn-primary start-scanner-btn" id="start-camera-btn">
+                  <i data-lucide="video" size="18"></i>
+                  Start Camera Scanner
+                </button>
+              </div>
+
+              <!-- Live Camera controls -->
+              <div class="camera-controls" id="camera-controls" style="display: none;">
+                <select id="camera-select" class="btn-secondary" style="display: none; padding: 0.5rem 1rem; border-radius: 8px; background: #0f172a; color: white; max-width: 150px;">
+                  <!-- Camera options injected by JS -->
+                </select>
+                <button class="btn-secondary" id="stop-camera-btn">
+                  <i data-lucide="video-off" size="18"></i>
+                  Stop Scanner
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Panel: Upload Image -->
+          <div class="scan-content-view" id="view-upload">
+            <div class="upload-dropzone" id="upload-dropzone">
+              <div class="upload-icon">
+                <i data-lucide="image" size="32"></i>
+              </div>
+              <div class="upload-text">
+                <h3>Drag & drop QR code image</h3>
+                <p>Supports PNG, JPG, JPEG, and WebP</p>
+              </div>
+              <button class="btn-secondary" id="browse-files-btn">
+                <i data-lucide="search" size="16"></i>
+                Browse Files
+              </button>
+              <input type="file" id="file-input" accept="image/*">
+            </div>
+          </div>
+
+          <!-- Tab Panel: Manual Input URL -->
+          <div class="scan-content-view" id="view-manual">
+            <div class="manual-check-view">
+              <div class="input-group">
+                <label for="url-input">Analyze URL Directly</label>
+                <div class="text-input-wrapper">
+                  <i data-lucide="globe" size="18"></i>
+                  <input type="url" id="url-input" placeholder="https://example.com/login-verification-portal" autocomplete="off">
+                </div>
+              </div>
+              <button class="btn-primary" id="check-url-btn" style="width: 100%; justify-content: center;">
+                <i data-lucide="activity" size="18"></i>
+                Run Safety Heuristics
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right Column: Results Dashboard -->
+        <section class="glass-card results-card" id="results-dashboard">
+          <div class="results-header-title">
+            <i data-lucide="bar-chart-2" size="20"></i>
+            <h2>Safety Diagnosis</h2>
+          </div>
+
+          <!-- Idle State -->
+          <div class="result-state result-state-idle active" id="state-idle">
+            <i data-lucide="qr-code" size="80" class="idle-illustration"></i>
+            <h3>No Data Analyzed</h3>
+            <p>Scan a QR code or enter a link on the left to review its safety report.</p>
+          </div>
+
+          <!-- Loading State -->
+          <div class="result-state result-state-loading" id="state-loading">
+            <div class="spinner-wrapper">
+              <div class="spinner"></div>
+            </div>
+            <h3 id="loading-header-text">Decoding Data</h3>
+            <p id="loading-sub-text">Analyzing link heuristics and scoring threat factors...</p>
+          </div>
+
+          <!-- Decryption Request State -->
+          <div class="result-state result-state-decrypt" id="state-decrypt" style="display: none;">
+            <i data-lucide="lock" size="64" style="color: var(--color-suspicious); margin-bottom: 1.25rem; filter: drop-shadow(0 0 10px var(--color-suspicious-glow));"></i>
+            <h3>Password Protected QR</h3>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem; max-width: 280px; margin-left: auto; margin-right: auto;">This QR payload is encrypted using AES. Enter the correct password below to unlock and diagnose its contents.</p>
+            
+            <div class="input-group" style="width: 100%; max-width: 280px; margin: 0 auto 1.5rem auto;">
+              <label for="decrypt-password-input" style="text-align: left; display: block;">Decryption Key</label>
+              <div class="text-input-wrapper">
+                <i data-lucide="key" size="16"></i>
+                <input type="password" id="decrypt-password-input" placeholder="Enter password" autocomplete="off" style="width: 100%;">
+              </div>
+            </div>
+            
+            <div class="action-row" style="width: 100%; max-width: 280px; margin: 0 auto; display: flex; gap: 0.75rem;">
+              <button class="btn-primary" id="decrypt-submit-btn" style="flex: 1; justify-content: center;">
+                <i data-lucide="unlock" size="14"></i>
+                Unlock
+              </button>
+              <button class="btn-secondary" id="decrypt-cancel-btn" style="flex: 1; justify-content: center;">
+                Cancel
+              </button>
+            </div>
+          </div>
+
+          <!-- Active Analysis State -->
+          <div class="result-state result-state-analysis" id="state-analysis">
+            <!-- Threat Overview -->
+            <div class="analysis-overview" id="analysis-overview">
+              <div class="gauge-wrapper">
+                <svg class="gauge-svg">
+                  <circle class="gauge-bg" cx="45" cy="45" r="40"></circle>
+                  <circle class="gauge-circle" id="risk-gauge" cx="45" cy="45" r="40"></circle>
+                </svg>
+                <div class="gauge-label">
+                  <span class="score-num" id="score-number">0</span>
+                  <span class="score-label">Risk</span>
+                </div>
+              </div>
+              <div class="overview-info">
+                <span class="status-badge" id="status-badge">Safe</span>
+                <p class="status-message" id="status-message">This URL shows no suspicious characteristics.</p>
+              </div>
+            </div>
+
+            <!-- Decoded QR content -->
+            <div class="decoded-link-box" id="decoded-link-box">
+              <span class="link-label">Decoded Payload</span>
+              <div class="link-value-container">
+                <span class="link-value" id="decoded-payload-text">https://google.com</span>
+                <button class="copy-btn" id="copy-payload-btn" title="Copy payload to clipboard">
+                  <i data-lucide="copy" size="16"></i>
+                </button>
+              </div>
+            </div>
+                <!-- Redirect Chain Map -->
+            <div class="redirect-chain-container" id="redirect-chain-container" style="display: none; width: 100%; margin-bottom: 1.5rem;">
+              <span class="link-label">Redirect Chain Map</span>
+              <div class="redirect-chain-flow" id="redirect-chain-flow" style="margin-top: 0.5rem;">
+                <!-- Injected dynamically -->
+              </div>
+            </div>
+
+            <!-- Visual Sandbox Preview -->
+            <div class="sandbox-preview-container" id="sandbox-preview-container" style="display: none; width: 100%; margin-bottom: 1.5rem;">
+              <span class="link-label">Visual Sandbox Preview</span>
+              <div class="sandbox-frame-wrapper" style="position: relative; width: 100%; margin-top: 0.5rem;">
+                <div id="sandbox-loader" class="sandbox-loader" style="padding: 1.25rem; text-align: center; font-size: 0.8rem; color: var(--text-secondary); background: rgba(15, 23, 42, 0.4); border-radius: var(--radius-md); border: 1px dashed var(--border-light); display: flex; align-items: center; justify-content: center; gap: 0.75rem;">
+                  <div class="spinner" style="width: 16px; height: 16px; border-width: 2.5px;"></div>
+                  Loading secure website screenshot...
+                </div>
+                <img id="sandbox-screenshot" src="" alt="Web Sandbox Screenshot" style="width: 100%; height: auto; max-height: 180px; object-fit: cover; border-radius: var(--radius-md); border: 1px solid var(--border-light); display: none; transition: var(--transition-smooth);">
+                <div id="sandbox-error" style="display: none; padding: 1rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); background: rgba(239, 68, 68, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.15);">
+                  <i data-lucide="image-off" size="16" style="vertical-align: middle; margin-right: 0.25rem;"></i>
+                  Visual sandbox screenshot unavailable for this link.
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="action-row" id="analysis-actions">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="btn-primary" id="visit-site-btn">
+                <i data-lucide="external-link" size="18"></i>
+                Open Website
+              </a>
+              <button class="btn-secondary" id="download-pdf-btn">
+                <i data-lucide="file-text" size="18"></i>
+                Export Report
+              </button>
+              <button class="btn-secondary" id="reset-btn" title="Scan Another">
+                <i data-lucide="refresh-cw" size="16"></i>
+                <span>Scan Another</span>
+              </button>
+            </div>
+
+            <!-- Heuristics Checklists -->
+            <div class="findings-container">
+              <h3 class="findings-title">Audit Report Details</h3>
+              <div class="findings-list" id="findings-list">
+                <!-- Injected dynamically -->
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Scan History Footer -->
+      <section class="history-section">
+        <div class="history-header">
+          <h2>
+            <i data-lucide="history" size="20"></i>
+            Recent Scans
+          </h2>
+          <button class="clear-history-btn" id="clear-history-btn">
+            <i data-lucide="trash-2" size="14"></i>
+            Clear History
+          </button>
+        </div>
+        <div class="history-grid" id="history-grid">
+          <div class="history-empty">
+            Your scan history will appear here. No scans saved yet.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Secure Generator Section -->
+    <div class="nav-section" id="generate-section" style="display: none;">
+      <main class="main-grid">
+        <!-- Left Column: Customization Form -->
+        <section class="glass-card generator-controls-card">
+          <div class="results-header-title">
+            <i data-lucide="sliders" size="20"></i>
+            <h2>QR Settings</h2>
+          </div>
+          
+          <div class="generator-form">
+            <!-- URL / Text Input -->
+            <div class="input-group" style="margin-bottom: 1.25rem;">
+              <label for="gen-url-input">Target URL / Text Content</label>
+              <div class="text-input-wrapper">
+                <i data-lucide="globe" size="18"></i>
+                <input type="text" id="gen-url-input" placeholder="https://example.com or any text..." autocomplete="off">
+              </div>
+            </div>
+              
+              <!-- Customizations Accordion -->
+            <div class="customization-accordion">
+              
+              <!-- Group 1: Dots & Background Color -->
+              <div class="accordion-group active">
+                <div class="accordion-header">
+                  <span>Dots & Background</span>
+                  <i data-lucide="chevron-down" size="16"></i>
+                </div>
+                <div class="accordion-content">
+                  <div class="control-row">
+                    <div class="input-group flex-1">
+                      <label for="gen-dots-style">Dot Shape</label>
+                      <select id="gen-dots-style" class="control-select">
+                        <option value="square" selected>Square</option>
+                        <option value="dots">Dots</option>
+                        <option value="rounded">Rounded</option>
+                        <option value="classy">Classy</option>
+                        <option value="classy-rounded">Classy Rounded</option>
+                        <option value="extra-rounded">Extra-Rounded</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="control-row" style="margin-top: 1rem;">
+                    <div class="input-group flex-1">
+                      <label for="gen-dots-color">Dots Color</label>
+                      <div class="color-picker-wrapper">
+                        <input type="color" id="gen-dots-color" value="#6366f1">
+                        <span class="color-hex">#6366f1</span>
+                      </div>
+                    </div>
+                    <div class="input-group flex-1" id="bg-color-group">
+                      <label for="gen-bg-color">Background Color</label>
+                      <div class="color-picker-wrapper">
+                        <input type="color" id="gen-bg-color" value="#ffffff">
+                        <span class="color-hex">#ffffff</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="checkbox-group" style="margin-top: 1rem;">
+                    <input type="checkbox" id="gen-bg-transparent">
+                    <label for="gen-bg-transparent">Transparent Background</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Group 2: Corners Styling -->
+              <div class="accordion-group">
+                <div class="accordion-header">
+                  <span>Corners Styling</span>
+                  <i data-lucide="chevron-down" size="16"></i>
+                </div>
+                <div class="accordion-content">
+                  <div class="control-row">
+                    <div class="input-group flex-1">
+                      <label for="gen-corners-square-style">Corner Ring Style</label>
+                      <select id="gen-corners-square-style" class="control-select">
+                        <option value="square" selected>Square</option>
+                        <option value="dot">Dot</option>
+                        <option value="extra-rounded">Extra-Rounded</option>
+                      </select>
+                    </div>
+                    <div class="input-group flex-1">
+                      <label for="gen-corners-dot-style">Corner Center Style</label>
+                      <select id="gen-corners-dot-style" class="control-select">
+                        <option value="square" selected>Square</option>
+                        <option value="dot">Dot</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="control-row" style="margin-top: 1rem;">
+                    <div class="input-group flex-1">
+                      <label for="gen-corners-square-color">Corner Ring Color</label>
+                      <div class="color-picker-wrapper">
+                        <input type="color" id="gen-corners-square-color" value="#6366f1">
+                        <span class="color-hex">#6366f1</span>
+                      </div>
+                    </div>
+                    <div class="input-group flex-1">
+                      <label for="gen-corners-dot-color">Corner Center Color</label>
+                      <div class="color-picker-wrapper">
+                        <input type="color" id="gen-corners-dot-color" value="#6366f1">
+                        <span class="color-hex">#6366f1</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Group 3: Logo Integration -->
+              <div class="accordion-group">
+                <div class="accordion-header">
+                  <span>Center Logo / Icon</span>
+                  <i data-lucide="chevron-down" size="16"></i>
+                </div>
+                <div class="accordion-content">
+                  <div class="logo-upload-container">
+                    <button class="btn-secondary" id="logo-upload-btn" type="button" style="width: 100%; justify-content: center;">
+                      <i data-lucide="upload-cloud" size="16"></i>
+                      Select Logo Image
+                    </button>
+                    <input type="file" id="logo-file-input" accept="image/*" style="display: none;">
+                  </div>
+                  
+                  <div class="logo-status-row" id="logo-status-row" style="display: none; margin-top: 0.75rem; align-items: center; justify-content: space-between; padding: 0.5rem; background: rgba(255,255,255,0.03); border-radius: 6px; border: 1px solid var(--border-light);">
+                    <span class="logo-filename" id="logo-filename" style="font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 80%;">No logo loaded</span>
+                    <button class="copy-btn" id="logo-remove-btn" style="color: var(--color-danger);" title="Remove logo">
+                      <i data-lucide="trash-2" size="16"></i>
+                    </button>
+                  </div>
+                  
+                  <div class="logo-sliders" id="logo-sliders" style="display: none; margin-top: 1rem;">
+                    <div class="input-group">
+                      <div style="display: flex; justify-content: space-between;">
+                        <label for="gen-logo-size">Logo Scale</label>
+                        <span id="logo-size-val" style="font-size: 0.8rem; color: var(--text-secondary);">20%</span>
+                      </div>
+                      <input type="range" id="gen-logo-size" min="0.1" max="0.4" step="0.05" value="0.2" style="width: 100%;">
+                    </div>
+                    <div class="input-group" style="margin-top: 0.75rem;">
+                      <div style="display: flex; justify-content: space-between;">
+                        <label for="gen-logo-margin">Logo Safety Margin</label>
+                        <span id="logo-margin-val" style="font-size: 0.8rem; color: var(--text-secondary);">5px</span>
+                      </div>
+                      <input type="range" id="gen-logo-margin" min="0" max="15" step="1" value="5" style="width: 100%;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Group 4: Password Protection (Encryption) -->
+              <div class="accordion-group">
+                <div class="accordion-header">
+                  <span>Password Protection</span>
+                  <i data-lucide="chevron-down" size="16"></i>
+                </div>
+                <div class="accordion-content">
+                  <div class="checkbox-group" style="margin-bottom: 0.75rem;">
+                    <input type="checkbox" id="gen-encrypt-toggle">
+                    <label for="gen-encrypt-toggle">Enable Password Protection</label>
+                  </div>
+                  
+                  <div class="input-group" id="gen-encrypt-password-group" style="display: none; margin-top: 0.5rem;">
+                    <label for="gen-encrypt-password">Encryption Password</label>
+                    <div class="text-input-wrapper">
+                      <i data-lucide="key" size="16"></i>
+                      <input type="password" id="gen-encrypt-password" placeholder="Enter password to secure QR" autocomplete="off" style="width: 100%;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Right Column: Live Render & Safety Audit -->
+        <section class="glass-card generator-preview-card">
+          <div class="results-header-title">
+            <i data-lucide="eye" size="20"></i>
+            <h2>Secure Preview</h2>
+          </div>
+
+          <div class="preview-workspace" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+            
+            <!-- Real-time Security Alert -->
+            <div class="gen-safety-alert status-safe" id="gen-safety-alert" style="width: 100%; display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1rem; border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.25); background: var(--color-safe-glow); margin-bottom: 1.5rem;">
+              <i data-lucide="shield-check" id="gen-safety-icon" class="alert-icon" size="20" style="color: var(--color-safe);"></i>
+              <div class="alert-info" style="flex: 1; min-width: 0;">
+                <div class="alert-title" id="gen-safety-title" style="font-size: 0.85rem; font-weight: 700; color: white;">Link Audited</div>
+                <div class="alert-desc" id="gen-safety-desc" style="font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Enter a URL to verify safety parameters.</div>
+              </div>
+              <span class="gen-safety-score" id="gen-safety-score" style="font-family: 'Outfit'; font-size: 1.25rem; font-weight: 800; color: var(--color-safe);">0</span>
+            </div>
+
+            <!-- Canvas Viewport -->
+            <div class="qr-preview-viewport" style="background: white; padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; width: 280px; height: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+              <div id="generator-canvas"></div>
+            </div>
+
+            <!-- Download Row -->
+            <div class="download-row" style="display: flex; gap: 1rem; width: 100%;">
+              <button class="btn-primary" id="download-png-btn" style="flex: 1; justify-content: center;">
+                <i data-lucide="download" size="18"></i>
+                Download PNG
+              </button>
+              <button class="btn-secondary" id="download-svg-btn" style="flex: 1; justify-content: center;">
+                <i data-lucide="file-type-2" size="18"></i>
+                Download SVG
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- User Convenience & Privacy Guarantee Section -->
+    <section class="convenience-section">
+      <div class="convenience-header">
+        <h2>Designed for Maximum User Convenience & Privacy</h2>
+        <p>Why users and privacy advocates prefer this scanner over commercial alternatives</p>
+      </div>
+
+      <div class="convenience-grid">
+        <div class="convenience-card">
+          <div class="convenience-icon">
+            <i data-lucide="user-x" size="22"></i>
+          </div>
+          <h3>Zero Login & Instant Access</h3>
+          <p>No account creation, no email signups, and no passwords to remember. Open on any browser and start scanning in 1 second.</p>
+        </div>
+
+        <div class="convenience-card">
+          <div class="convenience-icon">
+            <i data-lucide="lock" size="22"></i>
+          </div>
+          <h3>100% Private (No Cloud Storage)</h3>
+          <p>Scanned links and data never leave your device. All 8 heuristic rules and AES decryption run purely in browser memory.</p>
+        </div>
+
+        <div class="convenience-card">
+          <div class="convenience-icon">
+            <i data-lucide="smartphone" size="22"></i>
+          </div>
+          <h3>Zero App Store Installation</h3>
+          <p>No downloads required. Works effortlessly across Android, iPhone, Windows, Mac, and Linux without taking phone storage.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- App Main Code -->
+  <script type="module" src="app.js?v=20261027_03"></script>
+</body>
+</html>
