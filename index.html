@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="description" content="A premium, secure QR code reader that decodes links, analyzes threat safety, and generates designer styled QR codes securely.">
   <title>QR Code Safety Checker</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="style.css?v=20261027_03">
+  <link rel="stylesheet" href="style.css?v=20261027_04">
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <!-- html5-qrcode Library CDN -->
@@ -512,17 +512,17 @@
             </div>
 
             <!-- Canvas Viewport -->
-            <div class="qr-preview-viewport" style="background: white; padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; width: 280px; height: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+            <div class="qr-preview-viewport">
               <div id="generator-canvas"></div>
             </div>
 
             <!-- Download Row -->
-            <div class="download-row" style="display: flex; gap: 1rem; width: 100%;">
-              <button class="btn-primary" id="download-png-btn" style="flex: 1; justify-content: center;">
+            <div class="download-row">
+              <button class="btn-primary" id="download-png-btn">
                 <i data-lucide="download" size="18"></i>
                 Download PNG
               </button>
-              <button class="btn-secondary" id="download-svg-btn" style="flex: 1; justify-content: center;">
+              <button class="btn-secondary" id="download-svg-btn">
                 <i data-lucide="file-type-2" size="18"></i>
                 Download SVG
               </button>
@@ -569,6 +569,6 @@
   </div>
 
   <!-- App Main Code -->
-  <script type="module" src="app.js?v=20261027_03"></script>
+  <script type="module" src="app.js?v=20261027_04"></script>
 </body>
 </html>
